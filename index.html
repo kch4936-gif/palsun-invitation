@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>팔순 잔치에 초대합니다</title>
+  <meta name="description" content="2026년 11월 21일 토요일, 여수 1967바다지음에서 여든 번째 생신을 함께 축하해 주세요.">
+
+  <!-- 카카오톡·문자 공유 미리보기 -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kch4936-gif.github.io/palsun-invitation/">
+  <meta property="og:title" content="팔순 잔치에 초대합니다">
+  <meta property="og:description" content="2026년 11월 21일 토요일 · 여수 1967바다지음">
+  <!-- TODO: 배포 후 대표 사진의 절대 URL로 바꾸기 (1200×630 권장) -->
+  <!-- <meta property="og:image" content="https://배포주소/images/og.jpg"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="card">
+
+    <header class="hero">
+      <p class="hero__lead">여든 번째 생신을 맞아</p>
+      <div class="hero__mark" aria-hidden="true">
+        <span class="hero__num">80</span>
+        <svg class="hero__sea" viewBox="0 0 400 120" preserveAspectRatio="none">
+          <path class="wave wave--back" d="M0 40 Q50 20 100 40 T200 40 T300 40 T400 40 T500 40 T600 40 T700 40 T800 40 V120 H0 Z"/>
+          <path class="wave wave--front" d="M0 56 Q50 38 100 56 T200 56 T300 56 T400 56 T500 56 T600 56 T700 56 T800 56 V120 H0 Z"/>
+        </svg>
+      </div>
+      <h1 class="hero__title"><span data-field="honoree"></span>의<br>팔순 잔치에 초대합니다</h1>
+      <p class="hero__when" data-field="dateShort"></p>
+    </header>
+
+    <section class="greeting">
+      <p>
+        여든 해 동안 우리 가족을<br>
+        든든히 지켜 주신 <span data-field="honoree"></span>의<br>
+        생신을 맞아, 바다가 보이는 여수에서<br>
+        작은 잔치를 엽니다.
+      </p>
+      <p>
+        먼 길 오시기 쉽지 않으시겠지만<br>
+        함께 모여 축하해 주시면<br>
+        그보다 큰 선물은 없겠습니다.
+      </p>
+      <p class="greeting__from" data-field="host"></p>
+    </section>
+
+    <section class="when" aria-labelledby="when-title">
+      <h2 id="when-title">일시</h2>
+      <p class="when__date" data-field="dateLong"></p>
+      <table class="calendar" aria-label="달력">
+        <caption data-field="monthLabel"></caption>
+        <thead>
+          <tr><th class="sun">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="sat">토</th></tr>
+        </thead>
+        <tbody id="calendar-body"></tbody>
+      </table>
+    </section>
+
+    <section class="dday" aria-labelledby="dday-title">
+      <h2 id="dday-title" class="visually-hidden">잔치까지 남은 시간</h2>
+      <p class="dday__badge" id="dday-badge"></p>
+      <div class="dday__clock" id="dday-clock">
+        <div><strong id="cd-days">0</strong><span>일</span></div>
+        <div><strong id="cd-hours">00</strong><span>시간</span></div>
+        <div><strong id="cd-mins">00</strong><span>분</span></div>
+        <div><strong id="cd-secs">00</strong><span>초</span></div>
+      </div>
+      <p class="dday__msg" id="dday-msg"></p>
+    </section>
+
+    <section class="place" aria-labelledby="place-title">
+      <h2 id="place-title">오시는 길</h2>
+      <p class="place__name" data-field="placeName"></p>
+      <p class="place__addr">
+        <span id="place-address"></span>
+        <button type="button" class="btn-text" id="copy-address">주소 복사</button>
+      </p>
+      <div class="map">
+        <iframe id="map-frame" title="잔치 장소 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map-links">
+        <a id="link-naver" class="btn" target="_blank" rel="noopener">네이버 지도</a>
+        <a id="link-kakao" class="btn" target="_blank" rel="noopener">카카오맵</a>
+      </div>
+    </section>
+
+    <footer class="share">
+      <button type="button" class="btn btn--primary" id="share-btn">초대장 보내기</button>
+      <p class="share__note">카카오톡이나 문자로 가족에게 전해 주세요.</p>
+    </footer>
+
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

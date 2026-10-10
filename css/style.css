@@ -1,0 +1,305 @@
+:root {
+  --sea-deep: #12304a;   /* 밤바다 남색: 제목, 본문 */
+  --sea: #3d7ea6;        /* 물빛 파랑: 물결, 보조 */
+  --sea-mist: #f2f6f8;   /* 해무 흰색: 바탕 */
+  --foam: #ffffff;       /* 카드 */
+  --camellia: #c8323c;   /* 동백꽃 빨강: 유일한 강조색 */
+  --stone: #6b7a86;      /* 흐린 글씨 */
+  --line: #d8e3ea;
+
+  --serif: 'Gowun Batang', 'Noto Serif KR', serif;
+  --sans: 'Gowun Dodum', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #dfe9ef;
+  color: var(--sea-deep);
+  font-family: var(--sans);
+  font-size: 1.0625rem; /* 17px: 어르신도 읽기 편하게 */
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--sea-mist);
+  min-height: 100vh;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+section, .share { padding: 3.5rem 1.5rem; text-align: center; }
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.375rem;
+  margin: 0 0 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--camellia); outline-offset: 3px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- 첫 화면: 바다에 잠긴 80 ---------- */
+.hero {
+  background: linear-gradient(#f9fbfc, var(--sea-mist));
+  padding: calc(3rem + env(safe-area-inset-top)) 1.5rem 3rem;
+  text-align: center;
+}
+
+.hero__lead {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  color: var(--stone);
+  margin: 0;
+}
+
+.hero__mark {
+  position: relative;
+  width: min(100%, 320px);
+  margin: 0.5rem auto 1.5rem;
+  height: 13rem;
+}
+
+.hero__num {
+  position: absolute;
+  inset: 0;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 13rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--sea-deep);
+}
+
+/* 숫자 아랫부분을 물결이 덮는다 */
+.hero__sea {
+  position: absolute;
+  left: -2rem; right: -2rem; bottom: -0.5rem;
+  width: calc(100% + 4rem);
+  height: 45%;
+  overflow: hidden;
+}
+.wave { transform-box: fill-box; }
+.wave--back  { fill: var(--sea); opacity: 0.45; animation: drift 9s linear infinite; }
+.wave--front { fill: var(--sea); opacity: 0.85; animation: drift 6s linear infinite reverse; }
+
+@keyframes drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.hero__when {
+  margin: 1rem 0 0;
+  color: var(--stone);
+}
+
+/* ---------- 인사말 ---------- */
+.greeting {
+  background: var(--foam);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 2;
+}
+.greeting p { margin: 0 0 1.5rem; }
+.greeting__from { margin-top: 2rem !important; color: var(--stone); }
+
+/* ---------- 일시 + 달력 ---------- */
+.when__date {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  margin: 0 0 1.75rem;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.calendar caption {
+  font-family: var(--serif);
+  font-weight: 700;
+  padding-bottom: 0.75rem;
+}
+.calendar th {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--stone);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.calendar td {
+  height: 2.75rem;
+  text-align: center;
+  font-size: 1rem;
+}
+.calendar .sun { color: var(--camellia); }
+.calendar .sat { color: var(--sea); }
+
+/* 잔칫날: 동백꽃 한 송이 */
+.calendar .is-event span {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem; height: 2.5rem;
+  border-radius: 50%;
+  background: var(--camellia);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ---------- D-day ---------- */
+.dday { background: var(--sea-deep); color: #fff; }
+
+.dday__badge {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin: 0 0 1.75rem;
+}
+
+.dday__clock {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.dday__clock div {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+.dday__clock strong {
+  font-size: 1.75rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+}
+.dday__clock span { font-size: 0.875rem; opacity: 0.7; }
+
+.dday__msg { margin: 1.5rem 0 0; opacity: 0.85; }
+.dday__msg strong { color: #ffb3b8; font-weight: 400; }
+
+/* ---------- 장소 ---------- */
+.place__name {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.375rem;
+  margin: 0;
+}
+.place__addr { margin: 0.25rem 0 1.5rem; color: var(--stone); }
+
+.map {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  aspect-ratio: 4 / 3;
+  background: var(--line);
+}
+.map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.map-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--foam);
+  color: var(--sea-deep);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:active { background: var(--line); }
+
+.btn--primary {
+  width: 100%;
+  background: var(--camellia);
+  border-color: var(--camellia);
+  color: #fff;
+  font-weight: 700;
+}
+.btn--primary:active { background: #a92830; }
+
+.btn-text {
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--sea);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- 공유 ---------- */
+.share { background: var(--foam); padding-bottom: calc(3.5rem + env(safe-area-inset-bottom)); }
+.share__note { margin: 0.75rem 0 0; font-size: 0.9375rem; color: var(--stone); }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  transform: translate(-50%, 1rem);
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--sea-deep);
+  color: #fff;
+  font-size: 0.9375rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+
+/* 아주 작은 화면 (320px 폭) */
+@media (max-width: 359px) {
+  .hero__num { font-size: 10.5rem; }
+  .hero__mark { height: 10.5rem; }
+  .dday__badge { font-size: 3rem; }
+}
+
+/* PC: 휴대폰처럼 가운데 카드로 보이기 */
+@media (min-width: 600px) {
+  body { padding: 2rem 0; }
+  .card { min-height: auto; border-radius: 20px; box-shadow: 0 20px 60px rgba(18, 48, 74, 0.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave--back, .wave--front { animation: none; }
+  .toast { transition: none; }
+}
